@@ -8,11 +8,74 @@
 
     <resource-bundle>messages.MyBundle</resource-bundle>
 
+<!--    <extensions defaultExtensionNs="com.intellij">-->
+<!--        <toolWindow factoryClass="com.github.adamochen.ideaplugindemoccg.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>-->
+<!--    </extensions>-->
+
+<!--    <applicationListeners>-->
+<!--        <listener class="com.github.adamochen.ideaplugindemoccg.listeners.MyApplicationActivationListener" topic="com.intellij.openapi.application.ApplicationActivationListener"/>-->
+<!--    </applicationListeners>-->
+
+
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow factoryClass="com.github.adamochen.ideaplugindemoccg.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
+        <toolWindow factoryClass="com.github.adamochen.ideaplugindemoccg.FirstExtension"
+                    id="FirstExtension"/>
+
+        <!-- 注册 project-level service -->
+        <projectService
+                serviceInterface="com.github.adamochen.ideaplugindemoccg.FirstProjectService"
+                serviceImplementation="com.github.adamochen.ideaplugindemoccg.FirstProjectServiceImpl"/>
+
+<!--        <projectService serviceImplementation="com.github.adamochen.ideaplugindemoccg.userInterface.FirstDialogWrapperService"/>-->
+
+<!--        <typedHandler implementation="com.github.adamochen.ideaplugindemoccg.editor.SecondTypedHandler"/>-->
+
+<!--        <typedHandler implementation="com.github.adamochen.ideaplugindemoccg.editor.FirstTypedHandler"/>-->
     </extensions>
 
+    <actions>
+        <action id="FirstAction" class="com.github.adamochen.ideaplugindemoccg.FirstAction" text="FirstAction"
+                description="FirstAction">
+            <add-to-group group-id="EditorPopupMenu" />
+            <keyboard-shortcut first-keystroke="ALT + F" keymap="$default"/>
+        </action>
+
+        <action id="serviceAction" class="com.github.adamochen.ideaplugindemoccg.ServiceAction" text="ServiceAction"
+                description="ServiceAction">
+            <add-to-group group-id="EditorPopupMenu" />
+        </action>
+
+        <action id="disposeAction" class="com.github.adamochen.ideaplugindemoccg.dispose.DisposeAction" text="DisposeAction"
+                description="DisposeAction">
+            <add-to-group group-id="EditorPopupMenu" />
+        </action>
+
+<!--        <action class="com.github.adamochen.ideaplugindemoccg.userInterface.FirstDialogWrapperAction" text="FirstDialogWrapperAction"-->
+<!--                description="FirstDialogWrapperAction">-->
+<!--            <add-to-group group-id="EditorPopupMenu" />-->
+<!--        </action>-->
+
+        <action class="com.github.adamochen.ideaplugindemoccg.userInterface.FirstJBPopupAction" text="FirstJBPopupAction"
+                description="FirstJBPopupAction">
+            <add-to-group group-id="EditorPopupMenu" />
+        </action>
+
+        <action class="com.github.adamochen.ideaplugindemoccg.userInterface.FirstListTreeAction" text="FirstListTreeAction"
+                description="FirstListTreeAction">
+            <add-to-group group-id="EditorPopupMenu" />
+        </action>
+
+        <action class="com.github.adamochen.ideaplugindemoccg.editor.EditorAction" text="EdtorAction"
+                description="EdtorAction">
+            <add-to-group group-id="EditorPopupMenu" />
+        </action>
+
+
+    </actions>
+
     <applicationListeners>
-        <listener class="com.github.adamochen.ideaplugindemoccg.listeners.MyApplicationActivationListener" topic="com.intellij.openapi.application.ApplicationActivationListener"/>
+        <listener
+                class="com.github.adamochen.ideaplugindemoccg.FirstVfsListener"
+                topic="com.intellij.openapi.vfs.newvfs.BulkFileListener"/>
     </applicationListeners>
 </idea-plugin>
